@@ -94,7 +94,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
+        if (cb_remmber.isChecked()){
+            String user1 = et_user.getText().toString();
+            save(user1,"user");
+            String password1 = et_password.getText().toString();
+            save(password1,"password");
+        }
     }
 
 
@@ -120,17 +125,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
             }
         }
     }
-
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.cb_checkBox:
-                String user1 = et_user.getText().toString();
-                save(user1,"user");
-                String password1 = et_password.getText().toString();
-                save(password1,"password");
-                break;
             case R.id.btn_sign:
                 String user = et_user.getText().toString();
                 String password = et_password.getText().toString();
