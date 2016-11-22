@@ -1,6 +1,7 @@
 package com.example.asus.thesmartofairing;
 
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,11 +35,14 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
     private TextView tv_way;
     private TextView tv_set;
     private View mView;
+    private EditText et_hour;
+    private EditText et_minute;
+    private View view;
     private static final int CONNECTED = 1;
     private static final int RECEIVE = 0;
 
-    private static final String HOST = "192.168.0.100";
-    private static final int PORT = 5188;
+    private static final String HOST = "192.168.1.148";
+    private static final int PORT = 9990;
 
     private BufferedWriter mWriter;
     private BufferedReader mReader;
@@ -64,7 +69,6 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
         tv_way.setOnClickListener(this);
         tv_set = (TextView) mView.findViewById(R.id.tv_set);
         tv_set.setOnClickListener(this);
-
     }
 
     private void SendMsg(Socket socket, String sendtext) throws IOException {
@@ -144,9 +148,21 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.tv_time:
-                String time = "give me time";
-                ReceiverListener(time);
-                new AlertDialog.Builder(getActivity()).setTitle("请输入时间").setIcon(R.drawable.give_me_time).setView(R.layout.set_time_alertdio).setPositiveButton("确定",null).setNegativeButton("取消",null).show();
+                LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
+                view = layoutInflater.inflate(R.layout.set_time_alertdio,null);
+                new AlertDialog.Builder(getActivity()).setTitle("请输入时间").setIcon(R.drawable.give_me_time).setView(view).setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        et_hour = (EditText) view.findViewById(R.id.et_hour);
+                        et_minute = (EditText) view.findViewById(R.id.et_minute);
+                        String hour = et_hour.getText().toString();
+                        String minute = et_minute.getText().toString();
+                        ReceiverListener(hour);
+                        ReceiverListener(minute);
+
+                    }
+                }).setNegativeButton("取消",null).show();
+
                 break;
             case R.id.tv_light:
                 String light = "give me light";
