@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -145,6 +146,7 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
             case R.id.tv_time:
                 String time = "give me time";
                 ReceiverListener(time);
+                new AlertDialog.Builder(getActivity()).setTitle("请输入时间").setIcon(R.drawable.give_me_time).setView(R.layout.set_time_alertdio).setPositiveButton("确定",null).setNegativeButton("取消",null).show();
                 break;
             case R.id.tv_light:
                 String light = "give me light";
