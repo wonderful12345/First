@@ -43,6 +43,7 @@
         <ImageView
             android:layout_width="180dp"
             android:paddingTop="25dp"
+            android:id="@+id/iv_user"
             android:src="@drawable/ic_account_circle_red_200_48dp"
             android:layout_height="180dp"/>
     </LinearLayout>
@@ -63,6 +64,7 @@
             android:layout_height="wrap_content">
             <EditText
                 android:hint="输入你的账号"
+                android:id="@+id/et_user"
                 android:gravity="center_vertical"
                 android:textSize="18sp"
                 android:textColor="#fff"
@@ -88,6 +90,7 @@
             <EditText
                 android:hint="输入你的密码"
                 android:gravity="center_vertical"
+                android:id="@+id/et_password"
                 android:textSize="18sp"
                 android:textColor="#fff"
                 android:layout_width="match_parent"
@@ -117,6 +120,7 @@
         <Button
             android:layout_width="80dp"
             android:text="登录"
+            android:id="@+id/btn_sign"
             android:textSize="22sp"
             android:textColor="#fff"
             android:background="#6e77f6"
