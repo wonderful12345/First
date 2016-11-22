@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -100,7 +101,7 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
                     Log.d("MMMMMMM","CONNECT");
                     break;
                 case RECEIVE:
-                    Log.d("RRRRRR","RESIVE");
+                    Toast.makeText(getActivity(),"receive",Toast.LENGTH_LONG).show();
                     break;
             }
         }
@@ -125,6 +126,7 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
                             message1.what = RECEIVE;
                             handler.sendMessage(message1);
                         }
+
 
 
                     } catch (UnknownHostException e) {
