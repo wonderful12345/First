@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_register"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login"
+    tools:context="com.example.asus.thesmartofairing.RegisterActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:paddingTop="5dp"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:id="@+id/btn_register_return"
+            android:background="@drawable/sreturn"
+            android:layout_height="50dp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:paddingTop="13dp"
+            android:text="账户注册"
+            android:textColor="#ffffff"
+            android:textStyle="normal"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:paddingTop="10dp"
+        android:paddingRight="7dp"
+        android:paddingLeft="7dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:background="#fff"
+            android:layout_height="2dp"/>
+    </LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:paddingTop="15dp"
+    android:paddingRight="10dp"
+    android:paddingLeft="10dp"
+    android:orientation="horizontal"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/mobilephone"
+        android:layout_height="40dp"/>
+    <EditText
+        android:layout_width="0dp"
+        android:layout_weight="8"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="请填写手机号"
+        android:id="@+id/editText"/>
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:paddingTop="15dp"
+        android:orientation="horizontal"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/yanzheng"
+            android:layout_height="40dp"/>
+
+
+    <EditText
+        android:layout_width="0dp"
+        android:layout_weight="5"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="手机验证码"
+        android:id="@+id/editText2"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:background="#199af5"
+            android:text="获取验证码"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:paddingTop="15dp"
+        android:orientation="horizontal"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/mima"
+            android:layout_height="40dp"/>
+
+    <EditText
+        android:layout_width="0dp"
+        android:layout_weight="8"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="6~18位密码"
+        android:id="@+id/editText3"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:paddingTop="19dp"
+        android:paddingLeft="28dp"
+        android:paddingRight="28dp"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:text="确认"
+            android:textColor="#ffffff"
+            android:background="#6b6bf9"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+        <Button
+            android:layout_width="wrap_content"
+            android:text="取消"
+            android:id="@+id/btn_cancle"
+            android:textColor="#ffffff"
+            android:background="#6b6bf9"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

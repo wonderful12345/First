@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/login"
+    tools:context="com.example.asus.thesmartofairing.MainActivity">
+
+    <TextView
+            android:layout_width="match_parent"
+            android:text="智能晾衣杆"
+            android:textColor="#fff"
+            android:textSize="27sp"
+            android:gravity="center"
+            android:background="#626cf4"
+            android:layout_height="55dp"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:id="@+id/realtabcontent"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+    </FrameLayout>
+    <android.support.v4.app.FragmentTabHost
+        android:layout_width="match_parent"
+        android:layout_gravity="center_vertical"
+        android:id="@+id/fragmentTabHost_id"
+        android:layout_height="wrap_content"
+        android:background="#626cf4">
+
+            <FrameLayout
+                android:layout_weight="0"
+                android:id="@android:id/tabcontent"
+                android:layout_width="0dp"
+                android:layout_height="0dp">
+            </FrameLayout>
+
+    </android.support.v4.app.FragmentTabHost>
+
+
+</LinearLayout>

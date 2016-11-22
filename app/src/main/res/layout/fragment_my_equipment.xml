@@ -1,0 +1,137 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:paddingLeft="20dp"
+              android:paddingRight="20dp"
+              android:paddingTop="20dp"
+             tools:context="com.example.asus.thesmartofairing.MyEquipment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+       >
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/equitmentbtn_shape"
+                 android:layout_gravity="center_horizontal"
+                 android:layout_height="wrap_content"
+                 android:layout_width="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="定时"
+            android:textSize="18sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/equitmentbtn_light_shape"
+                 android:layout_gravity="center_horizontal"
+                 android:layout_height="wrap_content"
+                 android:layout_width="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="紫外灯"
+            android:textSize="18sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        >
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+
+            android:layout_height="wrap_content">
+
+            <include layout="@layout/equitmentbtn_win_shape"
+                     android:layout_gravity="center_horizontal"
+                     android:layout_height="wrap_content"
+                     android:layout_width="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="风干"
+                android:textSize="18sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <include layout="@layout/equitmentbtn_look_shape"
+                     android:layout_gravity="center_horizontal"
+                     android:layout_height="wrap_content"
+                     android:layout_width="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="查看"
+                android:textSize="18sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        >
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+
+            android:layout_height="wrap_content">
+
+            <include layout="@layout/equitmentbtn_way_shape"
+                     android:layout_gravity="center_horizontal"
+                     android:layout_height="wrap_content"
+                     android:layout_width="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="方向"
+                android:textSize="18sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <include layout="@layout/equitmentbtn_set_shape"
+                     android:layout_gravity="center_horizontal"
+                     android:layout_height="wrap_content"
+                     android:layout_width="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="设置"
+                android:textSize="18sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
