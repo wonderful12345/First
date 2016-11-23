@@ -47,7 +47,7 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
     private static final int RECEIVE = 0;
 
     private static final String HOST = "192.168.1.148";
-    private static final int PORT = 9990;
+    private static final int PORT = 9991;
 
     private BufferedWriter mWriter;
     private BufferedReader mReader;
