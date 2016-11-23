@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,10 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
     private TextView tv_look;
     private TextView tv_way;
     private TextView tv_set;
+    private ImageButton ib_up;
+    private ImageButton ib_left;
+    private ImageButton ib_right;
+    private ImageButton ib_down;
     private View mView;
     private EditText et_hour;
     private EditText et_minute;
@@ -148,6 +153,7 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.tv_time:
+                ReceiverListener("Time");
                 LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
                 view = layoutInflater.inflate(R.layout.set_time_alertdio,null);
                 new AlertDialog.Builder(getActivity()).setTitle("请输入时间").setIcon(R.drawable.give_me_time).setView(view).setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -159,7 +165,6 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
                         String minute = et_minute.getText().toString();
                         ReceiverListener(hour);
                         ReceiverListener(minute);
-
                     }
                 }).setNegativeButton("取消",null).show();
 
@@ -179,6 +184,37 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
             case R.id.tv_way:
                 String way = "give me way";
                 ReceiverListener(way);
+                LayoutInflater inflater = LayoutInflater.from(getActivity());
+                View view = inflater.inflate(R.layout.set_way_alertdio,null);
+                new AlertDialog.Builder(getActivity()).setTitle("请选择方向").setView(view).setIcon(R.drawable.way_icon).show();
+                ib_up = (ImageButton) view.findViewById(R.id.ib_up);
+                ib_up.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ReceiverListener("up");
+                    }
+                });
+                ib_left = (ImageButton) view.findViewById(R.id.ib_left);
+                ib_left.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ReceiverListener("L");
+                    }
+                });
+                ib_right = (ImageButton) view.findViewById(R.id.ib_right);
+                ib_right.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ReceiverListener("R");
+                    }
+                });
+                ib_down = (ImageButton) view.findViewById(R.id.ib_down);
+                ib_down.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ReceiverListener("down");
+                    }
+                });
                 break;
             case R.id.tv_set:
                 String set = "set set";
