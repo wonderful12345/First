@@ -45,12 +45,15 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
     private EditText et_minute;
     private Button btn_light_open;
     private Button btn_light_close;
+
+    private Button btn_win_work;
+    private Button btn_win_close;
     private View view;
     private static final int CONNECTED = 1;
     private static final int RECEIVE = 0;
 
-    private static final String HOST = "192.168.0.100";
-    private static final int PORT = 5188;
+    private static final String HOST = "192.168.1.148";
+    private static final int PORT = 9991;
 
     private BufferedWriter mWriter;
     private BufferedReader mReader;
@@ -220,6 +223,28 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
             case R.id.tv_win:
                 String win = "give me win";
                 ReceiverListener(win);
+                LayoutInflater layoutInflater2 = LayoutInflater.from(getActivity());
+                view = layoutInflater2.inflate(R.layout.set_win_alertdiao,null);
+                final AlertDialog alertDialog1 = new AlertDialog.Builder(getActivity()).setIcon(R.drawable.set_win_icon).setTitle("风干设置").setView(view).show();
+                btn_win_work= (Button) view.findViewById(R.id.btn_win_work);
+                btn_win_close = (Button) view.findViewById(R.id.btn_win_close);
+                btn_win_work.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String light_win_work = "work";
+                        ReceiverListener(light_win_work);
+                        alertDialog1.cancel();
+                    }
+                });
+                btn_win_close.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String light_win_string = "close";
+                        ReceiverListener(light_win_string);
+                        alertDialog1.cancel();
+                    }
+                });
+
                 break;
             case R.id.tv_look:
                 String look = "give me look";
