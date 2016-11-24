@@ -137,13 +137,14 @@
             android:layout_weight="1"
             android:layout_gravity="center"
             android:gravity="center"
+            android:paddingLeft="18dp"
             android:layout_height="wrap_content">
 
         <Button
             android:layout_width="wrap_content"
             android:text="确认"
             android:textColor="#ffffff"
-            android:background="#6b6bf9"
+            android:background="@drawable/button_shape"
             android:textSize="20sp"
             android:gravity="center"
             android:layout_height="wrap_content"/>
@@ -153,13 +154,14 @@
             android:layout_weight="1"
             android:layout_gravity="center"
             android:gravity="center"
+            android:paddingRight="18dp"
             android:layout_height="wrap_content">
         <Button
             android:layout_width="wrap_content"
             android:text="取消"
             android:id="@+id/btn_cancle"
             android:textColor="#ffffff"
-            android:background="#6b6bf9"
+            android:background="@drawable/button_shape"
             android:textSize="20sp"
             android:gravity="center"
             android:layout_height="wrap_content"/>

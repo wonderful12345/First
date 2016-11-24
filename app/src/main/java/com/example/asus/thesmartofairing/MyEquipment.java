@@ -49,8 +49,8 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
     private static final int CONNECTED = 1;
     private static final int RECEIVE = 0;
 
-    private static final String HOST = "192.168.1.148";
-    private static final int PORT = 9991;
+    private static final String HOST = "192.168.0.100";
+    private static final int PORT = 5188;
 
     private BufferedWriter mWriter;
     private BufferedReader mReader;
@@ -160,7 +160,7 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
         switch (v.getId()){
             case R.id.tv_time:
 
-                ReceiverListener("Time");
+                ReceiverListener("give me time");
                 LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
                 view = layoutInflater.inflate(R.layout.set_time_alertdio,null);
                 new AlertDialog.Builder(getActivity()).setTitle("请输入时间").setIcon(R.drawable.give_me_time).setView(view).setPositiveButton("确定", new DialogInterface.OnClickListener() {
