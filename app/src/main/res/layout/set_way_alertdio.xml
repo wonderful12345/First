@@ -13,7 +13,7 @@
     android:layout_height="wrap_content">
     <TextView
         android:layout_width="match_parent"
-        android:background="#949495"
+        android:background="#3280fe"
         android:layout_height="3dp"/>
 </LinearLayout>
 

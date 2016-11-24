@@ -52,6 +52,8 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
     private BufferedWriter mWriter;
     private BufferedReader mReader;
 
+    private boolean y = true;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -111,6 +113,7 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
                     Log.d("MMMMMMM","CONNECT");
                     break;
                 case RECEIVE:
+                    y=true;
                     Toast.makeText(getActivity(),"receive",Toast.LENGTH_LONG).show();
                     break;
             }
@@ -153,6 +156,7 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.tv_time:
+
                 ReceiverListener("Time");
                 LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
                 view = layoutInflater.inflate(R.layout.set_time_alertdio,null);
@@ -162,12 +166,28 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
                         et_hour = (EditText) view.findViewById(R.id.et_hour);
                         et_minute = (EditText) view.findViewById(R.id.et_minute);
                         String hour = et_hour.getText().toString();
-                        String minute = et_minute.getText().toString();
+                        if (hour.equals("")){
+                            hour = "0";
+                        }
+                        y=false;
                         ReceiverListener(hour);
-                        ReceiverListener(minute);
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (y==true){
+                                    String minute = et_minute.getText().toString();
+                                    if (minute.equals("")){
+                                        minute = "0";
+                                    }
+                                    ReceiverListener(minute);
+                                }else {
+                                    Toast.makeText(getActivity(),"fail to get time",Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        },1000);
                     }
                 }).setNegativeButton("取消",null).show();
-
                 break;
             case R.id.tv_light:
                 String light = "give me light";
