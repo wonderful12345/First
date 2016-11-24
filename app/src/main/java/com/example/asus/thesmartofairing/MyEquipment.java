@@ -120,7 +120,6 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
                     break;
                 case RECEIVE:
                     y=true;
-                    Toast.makeText(getActivity(),"receive",Toast.LENGTH_LONG).show();
                     break;
             }
         }
@@ -162,8 +161,6 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.tv_time:
-
-                ReceiverListener("give me time");
                 LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
                 view = layoutInflater.inflate(R.layout.set_time_alertdio,null);
                 new AlertDialog.Builder(getActivity()).setTitle("请输入时间").setIcon(R.drawable.give_me_time).setView(view).setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -172,10 +169,22 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
                         et_hour = (EditText) view.findViewById(R.id.et_hour);
                         et_minute = (EditText) view.findViewById(R.id.et_minute);
                         String hour = et_hour.getText().toString();
+                        String minute = et_minute.getText().toString();
                         if (hour.equals("")){
                             hour = "0";
                         }
+                        if (minute.equals("")){
+                            minute = "0";
+                        }
                         y=false;
+                        String together = hour+":"+minute+"#";
+                        ReceiverListener(together);
+                        if (y==true){
+                            Toast.makeText(getActivity(),"succeed to get time",Toast.LENGTH_SHORT).show();
+                        }else {
+                            Toast.makeText(getActivity(),"fail to get time",Toast.LENGTH_SHORT).show();
+                        }
+                        /*y=false;
                         ReceiverListener(hour);
                         Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
@@ -186,18 +195,19 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
                                     if (minute.equals("")){
                                         minute = "0";
                                     }
+                                    y=false;
                                     ReceiverListener(minute);
+                                    Toast.makeText(getActivity(),"succeed to get time",Toast.LENGTH_SHORT).show();
                                 }else {
                                     Toast.makeText(getActivity(),"fail to get time",Toast.LENGTH_SHORT).show();
                                 }
                             }
-                        },700);
+                        },700);*/
                     }
                 }).setNegativeButton("取消",null).show();
                 break;
             case R.id.tv_light:
-                String light = "give me light";
-                ReceiverListener(light);
+                y=false;
                 LayoutInflater layoutInflater1 = LayoutInflater.from(getActivity());
                 View view = layoutInflater1.inflate(R.layout.set_light_alertdiao,null);
                 final AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).setIcon(R.drawable.set_light_icon).setTitle("紫外灯设置").setView(view).show();
@@ -206,23 +216,34 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
                 btn_light_open.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String light_open_string = "open";
+                        String light_open_string = "O";
                         ReceiverListener(light_open_string);
                         alertDialog.cancel();
+                        if (y==true){
+                            Toast.makeText(getActivity(),"open",Toast.LENGTH_SHORT).show();
+                        }else {
+                            Toast.makeText(getActivity(),"fail to open",Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
                 btn_light_close.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String light_close_string = "close";
+                        String light_close_string = "C";
                         ReceiverListener(light_close_string);
                         alertDialog.cancel();
+                        if (y==true){
+                            Toast.makeText(getActivity(),"close",Toast.LENGTH_SHORT).show();
+                        }else {
+                            Toast.makeText(getActivity(),"fail to close",Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
                 break;
             case R.id.tv_win:
                 String win = "give me win";
                 ReceiverListener(win);
+                y = false;
                 LayoutInflater layoutInflater2 = LayoutInflater.from(getActivity());
                 view = layoutInflater2.inflate(R.layout.set_win_alertdiao,null);
                 final AlertDialog alertDialog1 = new AlertDialog.Builder(getActivity()).setIcon(R.drawable.set_win_icon).setTitle("风干设置").setView(view).show();
@@ -231,28 +252,37 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
                 btn_win_work.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String light_win_work = "work";
-                        ReceiverListener(light_win_work);
+                        String win_work_string = "work";
+                        ReceiverListener(win_work_string);
                         alertDialog1.cancel();
+                        if (y==true){
+                            Toast.makeText(getActivity(),"work",Toast.LENGTH_SHORT).show();
+                        }else {
+                            Toast.makeText(getActivity(),"fail to work",Toast.LENGTH_SHORT).show();
+                        }
+
                     }
                 });
                 btn_win_close.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String light_win_string = "close";
-                        ReceiverListener(light_win_string);
+                        String win_stop_string = "stop";
+                        ReceiverListener(win_stop_string);
                         alertDialog1.cancel();
+                        if (y==true){
+                            Toast.makeText(getActivity(),"stop",Toast.LENGTH_SHORT).show();
+                        }else {
+                            Toast.makeText(getActivity(),"fail to stop",Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
 
                 break;
             case R.id.tv_look:
-                String look = "give me look";
+                String look = "K";
                 ReceiverListener(look);
                 break;
             case R.id.tv_way:
-                String way = "give me way";
-                ReceiverListener(way);
                 LayoutInflater inflater = LayoutInflater.from(getActivity());
                 view = inflater.inflate(R.layout.set_way_alertdio,null);
                 new AlertDialog.Builder(getActivity()).setTitle("请选择方向").setView(view).setIcon(R.drawable.way_icon).show();
