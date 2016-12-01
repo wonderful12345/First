@@ -69,6 +69,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
             if (reader !=null){
                 try {
                     reader.close();
+                    in.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
