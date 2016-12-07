@@ -77,7 +77,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         }
         return content.toString();
     }
-
     private void initview() {
         tv_casualsee = (TextView) findViewById(R.id.tv_casualsee);
         btn_register = (Button) findViewById(R.id.btn_register);
