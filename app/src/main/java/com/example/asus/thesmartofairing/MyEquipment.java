@@ -1,7 +1,9 @@
 package com.example.asus.thesmartofairing;
 
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -14,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +27,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -43,6 +47,18 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
     private EditText et_minute;
     private Button btn_light_open;
     private Button btn_light_close;
+    private SeekBar sb_light;
+    private SeekBar sb_win;
+    private SeekBar sb_way_up;
+    private SeekBar sb_way_out;
+    private SeekBar sb_way_in;
+    private SeekBar sb_way_down;
+    private TextView tv_light_progress;
+    private TextView tv_win_progress;
+    private TextView tv_up_progress;
+    private TextView tv_out_progress;
+    private TextView tv_down_progress;
+    private TextView tv_in_progress;
     private String line;
     private Button btn_win_work;
     private Button btn_win_close;
@@ -286,11 +302,161 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
                 });
                 break;
             case R.id.tv_set:
-                String set = "set set";
+                final String set = "set set";
                 ReceiverListener(set);
                 LayoutInflater inflater1 = LayoutInflater.from(getActivity());
                 view = inflater1.inflate(R.layout.set_set_alertdialog,null);
                 new AlertDialog.Builder(getActivity()).setTitle("常规设置").setView(view).setIcon(R.drawable.ssset).show();
+                sb_light = (SeekBar) view.findViewById(R.id.sb_light);
+                sb_win = (SeekBar) view.findViewById(R.id.sb_win);
+                sb_way_down = (SeekBar) view.findViewById(R.id.sb_down);
+                sb_way_in = (SeekBar) view.findViewById(R.id.sb_in);
+                sb_way_out = (SeekBar) view.findViewById(R.id.sb_out);
+                sb_way_up = (SeekBar) view.findViewById(R.id.sb_up);
+                tv_light_progress = (TextView) view.findViewById(R.id.alert_light);
+                tv_win_progress = (TextView) view.findViewById(R.id.alert_win);
+                tv_up_progress = (TextView) view.findViewById(R.id.alert_way_up);
+                tv_down_progress = (TextView) view.findViewById(R.id.alert_way_down);
+                tv_in_progress = (TextView) view.findViewById(R.id.alert_way_in);
+                tv_out_progress = (TextView) view.findViewById(R.id.alert_way_out);
+                SharedPreferences preferences = getActivity().getSharedPreferences("set",Context.MODE_PRIVATE);
+                int light = preferences.getInt("light",0);
+                int int_win = preferences.getInt("win",0);
+                int int_up = preferences.getInt("up",0);
+                int int_down = preferences.getInt("down",0);
+                int int_out = preferences.getInt("out",0);
+                int int_in = preferences.getInt("in",0);
+                final SharedPreferences.Editor editor = getActivity().getSharedPreferences("set", Context.MODE_PRIVATE).edit();
+                if (light!=0){
+                    tv_light_progress.setText(light+"%");
+                    sb_light.setProgress(light);
+                }
+                if (int_win!=0){
+                    tv_win_progress.setText(int_win+"%");
+                    sb_win.setProgress(int_win);
+                }
+                if (int_up!=0){
+                    tv_up_progress.setText(int_up+"%");
+                    sb_way_up.setProgress(int_up);
+                }
+                if (int_down!=0){
+                    tv_down_progress.setText(int_down+"%");
+                    sb_way_down.setProgress(int_down);
+                }
+                if (int_out!=0){
+                    tv_out_progress.setText(int_out+"%");
+                    sb_way_out.setProgress(int_out);
+                }
+                if (int_in!=0){
+                    tv_in_progress.setText(int_in+"%");
+                    sb_way_in.setProgress(int_in);
+                }
+                sb_light.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        tv_light_progress.setText(progress+"%");
+                        editor.putInt("light",progress);
+                        editor.commit();
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+                    }
+                });
+                sb_win.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        tv_win_progress.setText(progress+"%");
+                        editor.putInt("win",progress);
+                        editor.commit();
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+
+                    }
+                });
+                sb_way_up.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        tv_up_progress.setText(progress+"%");
+                        editor.putInt("up",progress);
+                        editor.commit();
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+
+                    }
+                });
+                sb_way_down.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        tv_down_progress.setText(progress+"%");
+                        editor.putInt("down",progress);
+                        editor.commit();
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+
+                    }
+                });
+                sb_way_out.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        tv_out_progress.setText(progress+"%");
+                        editor.putInt("out",progress);
+                        editor.commit();
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+
+                    }
+                });
+                sb_way_in.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        tv_in_progress.setText(progress+"%");
+                        editor.putInt("in",progress);
+                        editor.commit();
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+
+                    }
+                });
                 break;
             default:
                 break;

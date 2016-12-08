@@ -17,13 +17,21 @@
         <TextView
             android:layout_width="wrap_content"
             android:text="紫外灯时间"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:layout_height="wrap_content"/>
         <SeekBar
             android:layout_width="210dp"
+            android:id="@+id/sb_light"
             android:layout_height="wrap_content"/>
-
     </LinearLayout>
+    <TextView
+    android:layout_width="wrap_content"
+    android:id="@+id/alert_light"
+    android:text="0%"
+    android:textSize="10dp"
+    android:paddingRight="38dp"
+    android:layout_gravity="end"
+    android:layout_height="wrap_content"/>
     <LinearLayout
         android:gravity="center"
         android:paddingTop="10dp"
@@ -34,13 +42,22 @@
         <TextView
             android:layout_width="wrap_content"
             android:text="风干的时间"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:layout_height="wrap_content"/>
         <SeekBar
             android:layout_width="210dp"
+            android:id="@+id/sb_win"
             android:layout_height="wrap_content"/>
 
     </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/alert_win"
+        android:text="0%"
+        android:textSize="10dp"
+        android:paddingRight="38dp"
+        android:layout_gravity="end"
+        android:layout_height="wrap_content"/>
 
     <LinearLayout
         android:gravity="center"
@@ -52,13 +69,22 @@
         <TextView
             android:layout_width="wrap_content"
             android:text="向上的距离"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:layout_height="wrap_content"/>
         <SeekBar
             android:layout_width="210dp"
+            android:id="@+id/sb_up"
             android:layout_height="wrap_content"/>
 
     </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/alert_way_up"
+        android:text="0%"
+        android:textSize="10dp"
+        android:paddingRight="38dp"
+        android:layout_gravity="end"
+        android:layout_height="wrap_content"/>
 
     <LinearLayout
         android:gravity="center"
@@ -70,13 +96,22 @@
         <TextView
             android:layout_width="wrap_content"
             android:text="向外的距离"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:layout_height="wrap_content"/>
         <SeekBar
             android:layout_width="210dp"
+            android:id="@+id/sb_out"
             android:layout_height="wrap_content"/>
 
     </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/alert_way_out"
+        android:text="0%"
+        android:textSize="10dp"
+        android:paddingRight="38dp"
+        android:layout_gravity="end"
+        android:layout_height="wrap_content"/>
     <LinearLayout
         android:gravity="center"
         android:paddingTop="10dp"
@@ -87,13 +122,23 @@
         <TextView
             android:layout_width="wrap_content"
             android:text="向内的距离"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:layout_height="wrap_content"/>
         <SeekBar
+            android:id="@+id/sb_in"
             android:layout_width="210dp"
             android:layout_height="wrap_content"/>
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/alert_way_in"
+        android:text="0%"
+        android:textSize="10dp"
+        android:paddingRight="38dp"
+        android:layout_gravity="end"
+        android:layout_height="wrap_content"/>
 
     <LinearLayout
         android:gravity="center"
@@ -105,14 +150,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:text="向下的距离"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:layout_height="wrap_content"/>
         <SeekBar
             android:layout_width="210dp"
+            android:id="@+id/sb_down"
             android:layout_height="wrap_content"/>
-
     </LinearLayout>
 
-
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/alert_way_down"
+        android:text="0%"
+        android:textSize="10dp"
+        android:paddingRight="38dp"
+        android:layout_gravity="end"
+        android:layout_height="wrap_content"/>
 </LinearLayout>
