@@ -186,11 +186,6 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
                         String together = hour+":"+minute+"#";
                         ReceiverListener(together);
                         Toast.makeText(getActivity(),"llll",Toast.LENGTH_SHORT).show();
-                        /*if (y==true){
-                            Toast.makeText(getActivity(),"succeed to get time",Toast.LENGTH_SHORT).show();
-                        }else {
-                            Toast.makeText(getActivity(),"fail to get time",Toast.LENGTH_SHORT).show();
-                        }*/
                     }
                 }).setNegativeButton("取消",null).show();
                 break;
@@ -206,11 +201,6 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
                         String light_open_string = "O";
                         ReceiverListener(light_open_string);
                         alertDialog.cancel();
-                       /* if (y==true){
-                            Toast.makeText(getActivity(),"open",Toast.LENGTH_SHORT).show();
-                        }else {
-                            Toast.makeText(getActivity(),"fail to open",Toast.LENGTH_SHORT).show();
-                        }*/
                     }
                 });
                 btn_light_close.setOnClickListener(new View.OnClickListener() {
@@ -219,11 +209,6 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
                         String light_close_string = "C";
                         ReceiverListener(light_close_string);
                         alertDialog.cancel();
-                        /*if (y==true){
-                            Toast.makeText(getActivity(),"close",Toast.LENGTH_SHORT).show();
-                        }else {
-                            Toast.makeText(getActivity(),"fail to close",Toast.LENGTH_SHORT).show();
-                        }*/
                     }
                 });
                 break;
@@ -241,12 +226,6 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
                         String win_work_string = "work";
                         ReceiverListener(win_work_string);
                         alertDialog1.cancel();
-                        /*if (y==true){
-                            Toast.makeText(getActivity(),"work",Toast.LENGTH_SHORT).show();
-                        }else {
-                            Toast.makeText(getActivity(),"fail to work",Toast.LENGTH_SHORT).show();
-                        }*/
-
                     }
                 });
                 btn_win_close.setOnClickListener(new View.OnClickListener() {
@@ -255,11 +234,6 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
                         String win_stop_string = "stop";
                         ReceiverListener(win_stop_string);
                         alertDialog1.cancel();
-                        /*if (y==true){
-                            Toast.makeText(getActivity(),"stop",Toast.LENGTH_SHORT).show();
-                        }else {
-                            Toast.makeText(getActivity(),"fail to stop",Toast.LENGTH_SHORT).show();
-                        }*/
                     }
                 });
 
@@ -449,12 +423,10 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
 
                     @Override
                     public void onStartTrackingTouch(SeekBar seekBar) {
-
                     }
 
                     @Override
                     public void onStopTrackingTouch(SeekBar seekBar) {
-
                     }
                 });
                 break;
