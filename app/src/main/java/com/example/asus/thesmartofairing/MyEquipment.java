@@ -65,6 +65,8 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
     private View view;
     private static final int CONNECTED = 1;
     private static final int RECEIVE = 0;
+    private SharedPreferences.Editor editor1;
+    private SharedPreferences mSharedPreferences;
 
     private static final String HOST = "192.168.1.148";
     private static final int PORT = 9991;
@@ -130,6 +132,8 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
                     Log.d("MMMMMMM","CONNECT");
                     break;
                 case RECEIVE:
+                    editor1.putString("boolean","true");
+                    editor1.commit();
                     break;
             }
         }
@@ -139,7 +143,7 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
             new Thread() {
                 @Override
                 public void run() {
-
+                    String h = string;
                     String s=string;
                     // 执行完毕后给handler发送一个空消息
                     try {
@@ -149,9 +153,12 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
                         SendMsg(socket,s);
                         s = ReceiveMsg(socket);
                         if (s!=null){
-                            line = s;
                             mWriter.close();
                             socket.close();
+                            if (h.equals("K")){
+                                editor1.putString("K",s);
+                                editor1.commit();
+                            }
                             Message message1 = new Message();
                             message1.what = RECEIVE;
                             handler.sendMessage(message1);
@@ -166,6 +173,8 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
     }
     @Override
     public void onClick(View v) {
+        mSharedPreferences = getActivity().getSharedPreferences("Receive",Context.MODE_PRIVATE);
+        editor1 = getActivity().getSharedPreferences("Receive",Context.MODE_PRIVATE).edit();
         switch (v.getId()){
             case R.id.tv_time:
                 LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
@@ -184,8 +193,22 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
                             minute = "0";
                         }
                         String together = hour+":"+minute+"#";
+                        editor1.putString("boolean","false");
+                        editor1.commit();
                         ReceiverListener(together);
-                        Toast.makeText(getActivity(),"llll",Toast.LENGTH_SHORT).show();
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                String receive = null;
+                                receive = mSharedPreferences.getString("boolean","");
+                                if (receive.equals("true")){
+                                    Toast.makeText(getActivity(),"时间设置成功",Toast.LENGTH_SHORT).show();
+                                }else {
+                                    Toast.makeText(getActivity(),"时间设置失败",Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        },1000);
                     }
                 }).setNegativeButton("取消",null).show();
                 break;
@@ -195,11 +218,26 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
                 final AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).setIcon(R.drawable.set_light_icon).setTitle("紫外灯设置").setView(view).show();
                 btn_light_open = (Button) view.findViewById(R.id.btn_light_open);
                 btn_light_close = (Button) view.findViewById(R.id.btn_light_close);
+                editor1.putString("boolean","false");
+                editor1.commit();
                 btn_light_open.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         String light_open_string = "O";
                         ReceiverListener(light_open_string);
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                String receive = null;
+                                receive = mSharedPreferences.getString("boolean","");
+                                if (receive.equals("true")){
+                                    Toast.makeText(getActivity(),"紫外灯打开成功",Toast.LENGTH_SHORT).show();
+                                }else {
+                                    Toast.makeText(getActivity(),"紫外灯打开失败",Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        },1000);
                         alertDialog.cancel();
                     }
                 });
@@ -208,6 +246,19 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
                     public void onClick(View v) {
                         String light_close_string = "C";
                         ReceiverListener(light_close_string);
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                String receive = null;
+                                receive = mSharedPreferences.getString("boolean","");
+                                if (receive.equals("true")){
+                                    Toast.makeText(getActivity(),"紫外灯关闭成功",Toast.LENGTH_SHORT).show();
+                                }else {
+                                    Toast.makeText(getActivity(),"紫外灯关闭失败",Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        },1000);
                         alertDialog.cancel();
                     }
                 });
@@ -220,11 +271,26 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
                 final AlertDialog alertDialog1 = new AlertDialog.Builder(getActivity()).setIcon(R.drawable.set_win_icon).setTitle("风干设置").setView(view).show();
                 btn_win_work= (Button) view.findViewById(R.id.btn_win_work);
                 btn_win_close = (Button) view.findViewById(R.id.btn_win_close);
+                editor1.putString("boolean","false");
+                editor1.commit();
                 btn_win_work.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         String win_work_string = "work";
                         ReceiverListener(win_work_string);
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                String receive = null;
+                                receive = mSharedPreferences.getString("boolean","");
+                                if (receive.equals("true")){
+                                    Toast.makeText(getActivity(),"风干开始工作",Toast.LENGTH_SHORT).show();
+                                }else {
+                                    Toast.makeText(getActivity(),"风干打开失败",Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        },1000);
                         alertDialog1.cancel();
                     }
                 });
@@ -233,6 +299,19 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
                     public void onClick(View v) {
                         String win_stop_string = "stop";
                         ReceiverListener(win_stop_string);
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                String receive = null;
+                                receive = mSharedPreferences.getString("boolean","");
+                                if (receive.equals("true")){
+                                    Toast.makeText(getActivity(),"成功停止风干",Toast.LENGTH_SHORT).show();
+                                }else {
+                                    Toast.makeText(getActivity(),"停止风干失败",Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        },1000);
                         alertDialog1.cancel();
                     }
                 });
@@ -241,6 +320,9 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
             case R.id.tv_look:
                 String look = "K";
                 ReceiverListener(look);
+                LayoutInflater inflater3 = LayoutInflater.from(getActivity());
+                view = inflater3.inflate(R.layout.set_look_alertdialog,null);
+                new AlertDialog.Builder(getActivity()).setTitle("查看衣杆状态").setIcon(R.drawable.alert_look).setView(view).show();
                 break;
             case R.id.tv_way:
                 LayoutInflater inflater = LayoutInflater.from(getActivity());
