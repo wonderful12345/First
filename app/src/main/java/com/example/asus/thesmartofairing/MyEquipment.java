@@ -2,13 +2,14 @@ package com.example.asus.thesmartofairing;
 
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Calendar;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -67,6 +69,13 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
     private static final int RECEIVE = 0;
     private SharedPreferences.Editor editor1;
     private SharedPreferences mSharedPreferences;
+    private TimeCount mTimeCount;
+    private TextView set_time_time2;
+    private TextView set_time_last;
+    private TextView set_time_time;
+    private TextView set_time_open;
+    private TextView set_time_shutdown;
+
 
     private static final String HOST = "192.168.1.148";
     private static final int PORT = 9991;
@@ -179,11 +188,19 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
             case R.id.tv_time:
                 LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
                 view = layoutInflater.inflate(R.layout.set_time_alertdio,null);
-                new AlertDialog.Builder(getActivity()).setTitle("请输入时间").setIcon(R.drawable.give_me_time).setView(view).setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                new AlertDialog.Builder(getActivity()).setTitle("请输入时间").setIcon(R.drawable.give_me_time).setView(view)/*.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         et_hour = (EditText) view.findViewById(R.id.et_hour);
                         et_minute = (EditText) view.findViewById(R.id.et_minute);
+                        *//*String hour = et_hour.getText().toString();
+                        String minute = et_minute.getText().toString();
+                        int h = Integer.valueOf(hour).intValue();
+                        int m = Integer.valueOf(minute).intValue();
+                        et_hour.setVisibility(View.GONE);
+                        et_minute.setVisibility(View.GONE);
+                        int z = h*3600+m*60;
+                        mTimeCount = new TimeCount(z,1000);*//*
                         String hour = et_hour.getText().toString();
                         String minute = et_minute.getText().toString();
                         if (hour.equals("")){
@@ -210,7 +227,81 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
                             }
                         },1000);
                     }
-                }).setNegativeButton("取消",null).show();
+                }).setNegativeButton("取消",null)*/.show();
+                set_time_open = (TextView) view.findViewById(R.id.tv_set_time_open);
+                set_time_last = (TextView) view.findViewById(R.id.set_time_last);
+                et_hour = (EditText) view.findViewById(R.id.et_hour);
+                et_minute = (EditText) view.findViewById(R.id.et_minute);
+                set_time_shutdown = (TextView) view.findViewById(R.id.set_time_shutdown);
+                set_time_open.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String hour = et_hour.getText().toString();
+                        String minute = et_minute.getText().toString();
+                        if (hour.equals("")){
+                            hour = "0";
+                        }
+                        if (minute.equals("")){
+                            minute = "0";
+                        }
+                        int h = Integer.valueOf(hour).intValue();
+                        int m = Integer.valueOf(minute).intValue();
+                        int sum = h*3600+m*60;
+                        Calendar calendar = Calendar.getInstance();
+                        int system_h = calendar.get(calendar.HOUR_OF_DAY);
+                        int system_m = calendar.get(calendar.MINUTE);
+                        int together_h = h+system_h;
+                        int together_m = m+system_m;
+                        /*ContentResolver contentResolver = getActivity().getContentResolver();
+                        String style_time_format = android.provider.Settings.System.getString(contentResolver,android.provider.Settings.System.TIME_12_24);
+                        Log.d("LLLLLLLLLLLLLLLLLLLLLL",style_time_format);
+                        if (style_time_format.equals("24")){
+                            if (together_m>=60){
+                                together_m = together_m-60;
+                                together_h = together_h+1;
+                                if (together_h>=24){
+                                    together_h = together_h-24;
+                                }
+                            }
+                        }else {
+                            if (together_m>=60){
+                                together_m = together_m-60;
+                                together_h = together_h+1;
+                                if (together_h>12){
+                                    together_h = together_h-12;
+                                }
+                            }
+                        }*/
+                        /*if (together_m>=60){
+                            together_m = together_m-60;
+                            together_h = together_h+1;
+                            if (together_h>12){
+                                together_h = together_h-12;
+                            }
+                        }*/
+                        mTimeCount = new TimeCount(sum*1000,1000);
+                        mTimeCount.start();
+                        //set_time_last.setText(together_h+":"+together_m);
+                    }
+                });
+                set_time_shutdown.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mTimeCount.cancel();
+                        set_time_last.setText("0秒");
+                        et_hour.setInputType(InputType.TYPE_CLASS_TEXT);
+                        et_minute.setInputType(InputType.TYPE_CLASS_TEXT);
+
+                    }
+                });
+
+
+
+                /*Window window = alertDialog0.getWindow();
+                WindowManager.LayoutParams layoutParams = window.getAttributes();
+                layoutParams.x = 100;
+                layoutParams.y = 150;*/
+                //alertDialog0.show();
                 break;
             case R.id.tv_light:
                 LayoutInflater layoutInflater1 = LayoutInflater.from(getActivity());
@@ -514,6 +605,31 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
                 break;
             default:
                 break;
+        }
+    }
+    class TimeCount extends CountDownTimer {
+
+        public TimeCount(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);//参数依次为总时长,和计时的时间间隔
+        }
+        @Override
+        public void onFinish() {//计时完毕时触发
+           // checking.setText("重新验证");
+           //checking.setClickable(true);
+            ReceiverListener("T");
+            set_time_last.setText("0秒");
+            et_hour.setInputType(InputType.TYPE_CLASS_TEXT);
+            et_minute.setInputType(InputType.TYPE_CLASS_TEXT);
+
+
+        }
+        @Override
+        public void onTick(long millisUntilFinished){//计时过程显示
+           // checking.setClickable(false);
+            et_hour.setInputType(InputType.TYPE_NULL);
+            et_minute.setInputType(InputType.TYPE_NULL);
+            set_time_last.setText(millisUntilFinished / 1000 + "秒");
+           // checking.setText(millisUntilFinished / 1000 + "秒");
         }
     }
 }

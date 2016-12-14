@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="center"
+    app:cardBackgroundColor="#fff"
+    app:contentPadding="10dp"
+    app:cardCornerRadius="4dp"
+    android:layout_width="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:id="@+id/iv_store_image1"
+            android:layout_height="wrap_content"/>
+        <View
+            style="@style/line_horizontal"
+            android:id="@+id/v_store_line1"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_store_image2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <View
+                android:id="@+id/v_store_line2"
+               style="@style/line_vertical"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:id="@+id/iv_store_image3"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/tv_heat_activity"
+            android:text="热门活动"
+            android:textSize="20sp"
+            android:textColor="#000"
+            android:paddingTop="10dp"
+            android:layout_height="wrap_content"/>
+        <View
+           style="@style/line_vertical"
+           android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

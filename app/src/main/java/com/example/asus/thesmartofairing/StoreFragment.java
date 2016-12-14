@@ -3,6 +3,7 @@ package com.example.asus.thesmartofairing;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,8 @@ import com.daimajia.slider.library.Tricks.ViewPagerEx;
 public class StoreFragment extends Fragment {
 
     private SliderLayout mSliderLayout;
+    private RecyclerView mRecyclerView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -27,8 +30,14 @@ public class StoreFragment extends Fragment {
         mSliderLayout = (SliderLayout) view.findViewById(R.id.slider_layout);
         initSlider();
         // Inflate the layout for this fragment
+        initRecyclerView(view);
         return view;
     }
+
+    private void initRecyclerView(View view) {
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_store);
+    }
+
     private void initSlider(){
         TextSliderView textSliderView = new TextSliderView(this.getActivity());
         textSliderView.description("秒杀")
