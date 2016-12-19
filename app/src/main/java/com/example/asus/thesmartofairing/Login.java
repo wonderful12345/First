@@ -2,6 +2,7 @@ package com.example.asus.thesmartofairing;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -33,6 +34,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     private Button btn_sign;
     private ImageView iv_user;
     private CheckBox cb_remmber;
+    private SharedPreferences.Editor mEditor;
+    private SharedPreferences mSharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +92,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         btn_sign.setOnClickListener(this);
         tv_casualsee.setOnClickListener(this);
         btn_register.setOnClickListener(this);
+        mSharedPreferences = getSharedPreferences("Login",MODE_PRIVATE);
+        mEditor = getSharedPreferences("Login",MODE_PRIVATE).edit();
+        mEditor.putString("boolean","false");
+        mEditor.commit();
     }
 
     @Override
@@ -136,9 +143,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                     Intent intent = new Intent();
                     intent.setClass(Login.this,MainActivity.class);
                     startActivity(intent);
+                    mEditor.putString("boolean","true");
+                    mEditor.commit();
                     //iv_user.setBackground(getDrawable(R.drawable.t019c43ed4eab6ebf26));
                     finish();
                 }else {
+                    mEditor.putString("boolean","false");
+                    mEditor.commit();
                     Toast.makeText(this,"你输入的账号或密码有误",Toast.LENGTH_LONG).show();
                 }
                 break;
