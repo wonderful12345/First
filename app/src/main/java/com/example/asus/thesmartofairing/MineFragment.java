@@ -62,7 +62,6 @@ public class MineFragment extends Fragment {
                     startActivity(intent);
                     getActivity().finish();
                 }
-
             }
         });
         // Inflate the layout for this fragment
@@ -73,8 +72,6 @@ public class MineFragment extends Fragment {
         tv_login = (TextView) mView.findViewById(R.id.tv_mine1);
         mSimpleDraweeView = (SimpleDraweeView) mView.findViewById(R.id.simpledraweeview_login);
         builder = new GenericDraweeHierarchyBuilder(getResources());
-
-
     }
 
 
