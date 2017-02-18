@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+
 public class MainActivity extends FragmentActivity {
 
     private FragmentTabHost mFragmentTabHost;
@@ -17,6 +19,7 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fresco.initialize(this);
         setContentView(R.layout.activity_main);
         mFragmentTabHost = (FragmentTabHost) findViewById(R.id.fragmentTabHost_id);
         mFragmentTabHost.setup(MainActivity.this,getSupportFragmentManager(),R.id.realtabcontent);

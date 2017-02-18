@@ -3,6 +3,7 @@ package com.example.asus.thesmartofairing;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,19 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -22,17 +36,63 @@ public class StoreFragment extends Fragment {
 
     private SliderLayout mSliderLayout;
     private RecyclerView mRecyclerView;
+    private StoreAdapt mStoreAdapt;
+    private List<String> tv_list;
+    private List<String> iv_list1;
+    private List<String> iv_list2;
+    private List<String> iv_list3;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_store, container, false);
         mSliderLayout = (SliderLayout) view.findViewById(R.id.slider_layout);
+        tv_list = new ArrayList<>();
+        iv_list1 = new ArrayList<>();
+        iv_list2 = new ArrayList<>();
+        iv_list3 = new ArrayList<>();
         initSlider();
         // Inflate the layout for this fragment
         initRecyclerView(view);
+        httpclientset();
+        mStoreAdapt = new StoreAdapt(this.getActivity(),tv_list,iv_list1,iv_list2,iv_list3);
+        mRecyclerView.setAdapter(mStoreAdapt);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         return view;
     }
+
+    private void httpclientset() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                HttpClient httpClient = new DefaultHttpClient();
+                HttpGet httpGet = new HttpGet("http://192.168.1.107:8080/app/get_data.json");
+                try {
+                    HttpResponse httpResponse = httpClient.execute(httpGet);
+                    if (httpResponse.getStatusLine().getStatusCode() == 200) {
+                        HttpEntity httpEntity = httpResponse.getEntity();
+                        String response = EntityUtils.toString(httpEntity, "utf-8");
+                        parseGson(response);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    private void parseGson(String response) {
+        Gson gson = new Gson();
+        List<StoreGson> storeList = gson.fromJson(response,new TypeToken<List<StoreGson>>(){}.getType());
+        for (StoreGson store: storeList){
+            tv_list.add(store.getName());
+            iv_list1.add(store.getUrione());
+            iv_list2.add(store.getUritwo());
+            iv_list3.add(store.getUrithree());
+        }
+    }
+
+
 
     private void initRecyclerView(View view) {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_store);
