@@ -32,11 +32,10 @@ public class StoreAdapt extends RecyclerView.Adapter<MyViewHolder> {
     }
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        mLayoutInflater = LayoutInflater.from(parent.getContext());
         if (viewType==Type_R){
-            return new MyViewHolder(mLayoutInflater.inflate(R.layout.set_store_cardview1,parent,false));
-        }else {
             return new MyViewHolder(mLayoutInflater.inflate(R.layout.store_cardview,parent,false));
+        }else {
+            return new MyViewHolder(mLayoutInflater.inflate(R.layout.set_store_cardview1,parent,false));
         }
     }
 

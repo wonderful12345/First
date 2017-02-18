@@ -2,60 +2,149 @@
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:gravity="center"
-    xmlns:fresco="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     app:cardBackgroundColor="#fff"
-    app:contentPadding="10dp" 
-    app:cardCornerRadius="4dp">
+    app:contentPadding="10dp"
+    app:cardUseCompatPadding="true"
+    app:cardElevation="5dp"
+    app:cardCornerRadius="12dp"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent">
     <LinearLayout
-        android:layout_width="match_parent"
         android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="match_parent"
-            android:id="@+id/tv_heat_activity"
-            android:text="热门活动"
-            android:textSize="20sp"
-            android:textColor="#000"
-            android:paddingTop="10dp"
-            android:layout_height="wrap_content"/>
-        <View
-            style="@style/line_vertical"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"></View>
-        
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></LinearLayout>
-
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:layout_width="55dp"
-            android:id="@+id/iv_store_image1"
-            android:layout_height="65dp"/>
-        <View
-            style="@style/line_horizontal"
-            android:id="@+id/cardview_line"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
             android:orientation="vertical"
             android:layout_height="wrap_content">
-
-            <com.facebook.drawee.view.SimpleDraweeView
-                android:layout_width="55dp"
-                android:id="@+id/iv_store_image2"
-                android:layout_height="65dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:id="@+id/tv_heat_activity"
+                android:text="热门活动"
+                android:textSize="20sp"
+                android:textColor="#000"
+                android:paddingTop="10dp"
+                android:layout_height="wrap_content"/>
             <View
                 style="@style/line_vertical"
-                android:id="@+id/cardview_line2"></View>
-            <com.facebook.drawee.view.SimpleDraweeView
-                android:layout_width="55dp"
-                android:id="@+id/iv_store_image3"
-                android:layout_height="65dp"/>
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"/>
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="小家电春节钜惠"
+                    android:textSize="18sp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="满1000减200"
+                    android:padding="5dp"
+                    android:textSize="15sp"
+                    android:textColor="#ec4e88"
+                    android:layout_height="wrap_content"/>
+          </LinearLayout>
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:layout_width="80dp"
+                    fresco:actualImageScaleType="fitCenter"
+                    android:id="@+id/iv_store_image3"
+                    android:layout_height="80dp"/>
+                </LinearLayout>
+                <View
+                    android:id="@+id/v_store_line2"
+                    style="@style/line_vertical"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/iv_store_image2"
+                    android:layout_width="80dp"
+                    fresco:actualImageScaleType="fitCenter"
+                    android:layout_height="80dp"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="IT区 国庆攻略"
+                        android:textSize="16sp"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="游戏本降2000"
+                        android:textSize="12sp"
+                        android:textColor="#ec4e88"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+            <View
+                style="@style/line_horizontal"
+                android:id="@+id/v_store_line1"/>
+
+            <LinearLayout
+                android:paddingLeft="12dp"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:text="钟表榜 风云起"
+                            android:textSize="18sp"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:text="爆款99元起"
+                            android:textSize="12sp"
+                            android:textColor="#ec4e88"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:paddingLeft="10dp"
+                        fresco:actualImageScaleType="fitCenter"
+                        android:layout_width="160dp"
+                        android:id="@+id/iv_store_image1"
+                        android:layout_height="120dp"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
     </LinearLayout>
 </android.support.v7.widget.CardView>
