@@ -14,8 +14,11 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -41,11 +44,23 @@ public class StoreFragment extends Fragment {
     private List<String> iv_list1;
     private List<String> iv_list2;
     private List<String> iv_list3;
+    private Okhttphelper mOkhttphelper = Okhttphelper.getInstance();
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+       /* if(rootView==null){
+            rootView=inflater.inflate(R.layout.fragment_store,container,false);
+        }
+        //缓存的rootView需要判断是否已经被加过parent， 如果有parent需要从parent删除，要不然会发生这个rootview已经有parent的错误。
+        ViewGroup parent = (ViewGroup) rootView.getParent();
+        if (parent != null) {
+            parent.removeView(rootView);
+        }*/
+        Fresco.initialize(this.getActivity());
         View view = inflater.inflate(R.layout.fragment_store, container, false);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_store);
         mSliderLayout = (SliderLayout) view.findViewById(R.id.slider_layout);
         tv_list = new ArrayList<>();
         iv_list1 = new ArrayList<>();
@@ -53,11 +68,8 @@ public class StoreFragment extends Fragment {
         iv_list3 = new ArrayList<>();
         initSlider();
         // Inflate the layout for this fragment
-        initRecyclerView(view);
-        httpclientset();
-        mStoreAdapt = new StoreAdapt(this.getActivity(),tv_list,iv_list1,iv_list2,iv_list3);
-        mRecyclerView.setAdapter(mStoreAdapt);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        initRecyclerView();
+
         return view;
     }
 
@@ -71,8 +83,10 @@ public class StoreFragment extends Fragment {
                     HttpResponse httpResponse = httpClient.execute(httpGet);
                     if (httpResponse.getStatusLine().getStatusCode() == 200) {
                         HttpEntity httpEntity = httpResponse.getEntity();
-                        String response = EntityUtils.toString(httpEntity, "utf-8");
+                        String response = EntityUtils.toString(httpEntity,"utf-8");
                         parseGson(response);
+                    }else{
+                        httpGet.abort();
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -93,12 +107,44 @@ public class StoreFragment extends Fragment {
     }
 
 
+    private void initRecyclerView() {
+        String url = "http://192.168.1.107:8080/app/get_data.json";
+        mOkhttphelper.get(url, new BaseCallBack<List<StoreGson>>() {
+            @Override
+            public void onRequestBefore(Request request) {
 
-    private void initRecyclerView(View view) {
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_store);
+            }
+
+            @Override
+            public void onFailure(Request request, IOException e) {
+
+            }
+
+            @Override
+            public void onSuccess(Response response, List<StoreGson> storeGsons) {
+                initData(storeGsons);
+            }
+
+            @Override
+            public void onError(Response response, int code, Exception e) {
+
+            }
+        });
     }
 
-    private void initSlider(){
+    private void initData(List<StoreGson> storeGsons) {
+        mStoreAdapt = new StoreAdapt(this.getActivity(),storeGsons);
+        mRecyclerView.setAdapter(mStoreAdapt);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+    }
+    /*private void initRecyclerView(View view) {
+        httpclientset();
+        mStoreAdapt = new StoreAdapt(this.getActivity(),tv_list,iv_list1,iv_list2,iv_list3);
+        mRecyclerView.setAdapter(mStoreAdapt);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+    }*/
+
+        private void initSlider(){
         TextSliderView textSliderView = new TextSliderView(this.getActivity());
         textSliderView.description("秒杀")
                 .image("http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg");

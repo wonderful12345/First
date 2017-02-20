@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -23,6 +24,13 @@ public class MainActivity extends FragmentActivity {
         setContentView(R.layout.activity_main);
         mFragmentTabHost = (FragmentTabHost) findViewById(R.id.fragmentTabHost_id);
         mFragmentTabHost.setup(MainActivity.this,getSupportFragmentManager(),R.id.realtabcontent);
+        mFragmentTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String tabId) {
+                if (tabId.equals("商城")){
+                }
+            }
+        });
         for (int i = 0; i < 3; i++) {
             View view = getLayoutInflater().inflate(R.layout.tabhost_layout,null);
             ImageView icon_image = (ImageView) view.findViewById(R.id.image_icon);
@@ -32,4 +40,5 @@ public class MainActivity extends FragmentActivity {
             mFragmentTabHost.addTab(mFragmentTabHost.newTabSpec(textview[i]).setIndicator(view),fragment[i],null);
         }
     }
+
 }
