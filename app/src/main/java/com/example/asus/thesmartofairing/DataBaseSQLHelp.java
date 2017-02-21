@@ -11,7 +11,7 @@ import android.util.Log;
 
 public class DataBaseSQLHelp extends SQLiteOpenHelper {
 
-    public static final String CREATE_Register = "create table Register("
+    public static final String CREATE_Register = "create table register("
     +"id integer primary key autoincrement,"
     +"register_name text,"
     +"register_password text)";

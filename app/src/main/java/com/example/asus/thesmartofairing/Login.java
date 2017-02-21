@@ -3,6 +3,8 @@ package com.example.asus.thesmartofairing;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -36,11 +38,15 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     private CheckBox cb_remmber;
     private SharedPreferences.Editor mEditor;
     private SharedPreferences mSharedPreferences;
+    private DataBaseSQLHelp mDataBaseSQLHelp;
+    private int YES = 1;
+    private int NO = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         initview();
+        mDataBaseSQLHelp = new DataBaseSQLHelp(this,"Register.db",null,1);
         String getuser = load("user");
         if (!TextUtils.isEmpty(getuser)){
             et_user.setText(getuser);
@@ -138,15 +144,26 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
             case R.id.btn_sign:
                 String user = et_user.getText().toString();
                 String password = et_password.getText().toString();
-                if (user.equals("13794575196")&&password.equals("yang")){
+                SQLiteDatabase db = mDataBaseSQLHelp.getWritableDatabase();
+                Cursor cursor = db.query("Register",null,null,null,null,null,null);
+                int j = 8;
+                if (cursor.moveToFirst()){
+                    do{
+                        String s1 = cursor.getString(cursor.getColumnIndex("register_name"));
+                        String s2 = cursor.getString(cursor.getColumnIndex("register_password"));
+                        if (s1.equals(user)&&s2.equals(password)){
+                            j = YES;
+                        }
+                    }while (cursor.moveToNext());
+                }
+                if (j==YES){
                     Intent intent = new Intent();
                     intent.setClass(Login.this,MainActivity.class);
                     startActivity(intent);
                     mEditor.putString("boolean","true");
                     mEditor.commit();
-                    //iv_user.setBackground(getDrawable(R.drawable.t019c43ed4eab6ebf26));
                     finish();
-                }else {
+                } else {
                     mEditor.putString("boolean","false");
                     mEditor.commit();
                     Toast.makeText(this,"你输入的账号或密码有误",Toast.LENGTH_LONG).show();

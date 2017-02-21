@@ -24,6 +24,8 @@
         </activity>
         <activity android:name=".RegisterActivity">
         </activity>
+        <activity android:name=".Leave_login">
+        </activity>
     </application>
 
 </manifest>

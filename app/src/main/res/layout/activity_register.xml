@@ -65,7 +65,7 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:hint="请填写手机号"
-        android:id="@+id/editText"/>
+        android:id="@+id/et_Mobile_num"/>
 </LinearLayout>
 
     <LinearLayout

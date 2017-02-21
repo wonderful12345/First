@@ -19,6 +19,8 @@ import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder;
 import com.facebook.drawee.generic.RoundingParams;
 import com.facebook.drawee.view.SimpleDraweeView;
 
+import de.greenrobot.event.EventBus;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,14 +35,16 @@ public class MineFragment extends Fragment {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Fresco.initialize(getContext());
+        EventBus.getDefault().register(this);
         mView = inflater.inflate(R.layout.fragment_mine,container,false);
         initView();
         mSharedPreferences = getActivity().getSharedPreferences("Login", Context.MODE_PRIVATE);
         String c = mSharedPreferences.getString("boolean","");
         if (c.equals("true")){
+
             tv_login.setText("13794575196");
             tv_login.setClickable(false);
             GenericDraweeHierarchy hierarchy = builder.setPlaceholderImage(getActivity().getDrawable(R.drawable.image_login))
@@ -59,6 +63,11 @@ public class MineFragment extends Fragment {
                 if (h.equals("false")){
                     Intent intent = new Intent();
                     intent.setClass(getActivity(),Login.class);
+                    startActivity(intent);
+                    getActivity().finish();
+                }else{
+                    Intent intent = new Intent();
+                    intent.setClass(getActivity(),Leave_login.class);
                     startActivity(intent);
                     getActivity().finish();
                 }
