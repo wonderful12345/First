@@ -13,9 +13,9 @@
             android:layout_width="match_parent"
             android:text="智能晾衣杆"
             android:textColor="#fff"
-            android:textSize="27sp"
+            android:textSize="23sp"
             android:gravity="center"
-            android:background="#626cf4"
+            android:background="#6964fe"
             android:layout_height="55dp"/>
     <FrameLayout
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
         android:layout_gravity="center_vertical"
         android:id="@+id/fragmentTabHost_id"
         android:layout_height="wrap_content"
-        android:background="#626cf4">
+        android:background="#6964fe">
 
             <FrameLayout
                 android:layout_weight="0"

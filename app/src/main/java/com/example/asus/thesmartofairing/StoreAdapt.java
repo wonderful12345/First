@@ -49,6 +49,12 @@ public class StoreAdapt extends RecyclerView.Adapter<MyViewHolder> {
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
         holder.mTextView.setText(mStoreGsonList.get(position).getName());
+        holder.tv_card_view_1_1.setText(mStoreGsonList.get(position).getCard_view_1_1());
+        holder.tv_card_view_1_2.setText(mStoreGsonList.get(position).getCard_view_1_2());
+        holder.tv_card_view_2_1.setText(mStoreGsonList.get(position).getCard_view_2_1());
+        holder.tv_care_view_2_2.setText(mStoreGsonList.get(position).getCard_view_2_2());
+        holder.tv_card_view_3_1.setText(mStoreGsonList.get(position).getCard_view_3_1());
+        holder.tv_card_view_3_2.setText(mStoreGsonList.get(position).getCard_view_3_2());
         Uri uri1 = Uri.parse(mStoreGsonList.get(position).getUrione());
         holder.mImageView1.setImageURI(uri1);
         Uri uri2 = Uri.parse(mStoreGsonList.get(position).getUritwo());

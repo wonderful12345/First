@@ -79,26 +79,17 @@
         <ImageView
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:background="@drawable/yanzheng"
+            android:background="@drawable/mima"
             android:layout_height="40dp"/>
 
-
-    <EditText
-        android:layout_width="0dp"
-        android:layout_weight="5"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="手机验证码"
-        android:id="@+id/editText2"/>
-
-        <Button
+        <EditText
             android:layout_width="0dp"
-            android:layout_weight="3"
-            android:background="#199af5"
-            android:text="获取验证码"
-            android:textColor="#ffffff"
-            android:textSize="18sp"
-            android:layout_height="wrap_content"/>
+            android:layout_weight="8"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:hint="6~18位密码"
+            android:id="@+id/et_password1"/>
+
     </LinearLayout>
 
     <LinearLayout
@@ -108,20 +99,20 @@
         android:paddingRight="10dp"
         android:paddingLeft="10dp"
         android:layout_height="wrap_content">
-
         <ImageView
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:background="@drawable/mima"
+            android:background="@drawable/yanzheng"
             android:layout_height="40dp"/>
 
-    <EditText
-        android:layout_width="0dp"
-        android:layout_weight="8"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="6~18位密码"
-        android:id="@+id/editText3"/>
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="8"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:hint="重新输入密码"
+            android:id="@+id/et_sure_password"/>
+
     </LinearLayout>
 
     <LinearLayout
@@ -144,6 +135,7 @@
             android:layout_width="wrap_content"
             android:text="确认"
             android:textColor="#ffffff"
+            android:id="@+id/btn_affirm"
             android:background="@drawable/button_shape"
             android:textSize="20sp"
             android:gravity="center"

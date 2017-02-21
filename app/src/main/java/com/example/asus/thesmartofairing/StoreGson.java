@@ -7,7 +7,60 @@ public class StoreGson {
     private String urione;
     private String uritwo;
     private String urithree;
+    private String card_view_1_1;
+    private String card_view_1_2;
+    private String card_view_2_1;
+    private String card_view_2_2;
+    private String card_view_3_1;
+    private String card_view_3_2;
     private String name;
+
+    public String getCard_view_3_2() {
+        return card_view_3_2;
+    }
+
+    public void setCard_view_3_2(String card_view_3_2) {
+        this.card_view_3_2 = card_view_3_2;
+    }
+
+    public String getCard_view_3_1() {
+        return card_view_3_1;
+    }
+
+    public void setCard_view_3_1(String card_view_3_1) {
+        this.card_view_3_1 = card_view_3_1;
+    }
+
+    public String getCard_view_2_2() {
+        return card_view_2_2;
+    }
+
+    public void setCard_view_2_2(String card_view_2_2) {
+        this.card_view_2_2 = card_view_2_2;
+    }
+
+    public String getCard_view_2_1() {
+        return card_view_2_1;
+    }
+    public void setCard_view_2_1(String card_view_2_1) {
+        this.card_view_2_1 = card_view_2_1;
+    }
+
+    public String getCard_view_1_2() {
+        return card_view_1_2;
+    }
+
+    public void setCard_view_1_2(String card_view_1_2) {
+        this.card_view_1_2 = card_view_1_2;
+    }
+
+    public String getCard_view_1_1() {
+        return card_view_1_1;
+    }
+
+    public void setCard_view_1_1(String card_view_1_1) {
+        this.card_view_1_1 = card_view_1_1;
+    }
 
     public String getName() {
         return name;

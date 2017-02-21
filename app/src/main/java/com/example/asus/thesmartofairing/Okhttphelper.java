@@ -12,6 +12,7 @@ import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -52,34 +53,34 @@ public class Okhttphelper {
 
         baseCallBack.onRequestBefore(request);
         okHttpClient.newCall(request).enqueue(new com.squareup.okhttp.Callback() {
-                                                  @Override
-                                                  public void onFailure(Request request, IOException e) {
-                                                      baseCallBack.onFailure(request, e);
-                                                  }
+            @Override
+            public void onFailure(Request request, IOException e) {
+                baseCallBack.onFailure(request, e);
+            }
 
-                                                  @Override
-                                                  public void onResponse(Response response) throws IOException {
-                                                      if (response.isSuccessful()) {
-                                                          String resultStr = response.body().string();
-                                                          if (baseCallBack.type == String.class) {
-                                                              baseCallBack.onSuccess(response, resultStr);
-                                                              callbackSuccess(baseCallBack, response, resultStr);
-                                                          } else {
+            @Override
+            public void onResponse(Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String resultStr = response.body().string();
+                    URLDecoder.decode(resultStr,"utf-8");
+                    if (baseCallBack.type == String.class) {
+                        baseCallBack.onSuccess(response, resultStr);
+                        callbackSuccess(baseCallBack, response, resultStr);
+                    } else {
+                        try {
+                            Object object = gson.fromJson(resultStr, baseCallBack.type);
+                            callbackSuccess(baseCallBack, response, object);
+                        } catch (JsonParseException e) {
+                            //baseCallBack.onError(response, response.code(), e);
+                            callbackError(baseCallBack, response, e);
+                        }
 
-                                                              try {
-                                                                  Object object = gson.fromJson(resultStr, baseCallBack.type);
-                                                                  callbackSuccess(baseCallBack, response, object);
-                                                              } catch (JsonParseException e) {
-                                                                  //baseCallBack.onError(response, response.code(), e);
-                                                                  callbackError(baseCallBack,response,e);
-                                                              }
-
-                                                          }
-                                                      } else {
-                                                          baseCallBack.onError(response, response.code(), null);
-                                                      }
-                                                  }
-                                              }
+                    }
+                } else {
+                    baseCallBack.onError(response, response.code(), null);
+                }
+            }
+        }
         );
     }
 

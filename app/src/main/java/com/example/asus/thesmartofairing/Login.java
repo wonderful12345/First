@@ -110,7 +110,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     }
 
 
-
     private void save(String user,String data) {
         FileOutputStream out = null;
         BufferedWriter writer = null;

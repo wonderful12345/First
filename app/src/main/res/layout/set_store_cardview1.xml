@@ -7,7 +7,7 @@
     android:gravity="center"
     app:cardBackgroundColor="#fff"
     app:cardUseCompatPadding="true"
-    app:contentPadding="10dp"
+    app:contentPadding="4dp"
     app:cardElevation="5dp"
     app:cardCornerRadius="12dp"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
@@ -20,13 +20,11 @@
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="wrap_content">
-
-
             <TextView
                 android:layout_width="match_parent"
                 android:id="@+id/tv_heat_activity"
                 android:text="热门活动"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textColor="#000"
                 android:paddingTop="10dp"
                 android:layout_height="wrap_content"/>
@@ -47,17 +45,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:text="小家电春节钜惠"
-            android:textSize="18sp"
+            android:paddingLeft="5dp"
+            android:id="@+id/card_view_1_1"
+            android:textSize="13sp"
             android:layout_height="wrap_content"/>
         <TextView
             android:layout_width="wrap_content"
             android:text="满1000减200"
-            android:padding="5dp"
-            android:textSize="15sp"
+            android:id="@+id/card_view_1_2"
+            android:paddingLeft="5dp"
+            android:textSize="10sp"
             android:textColor="#ec4e88"
             android:layout_height="wrap_content"/>
         <com.facebook.drawee.view.SimpleDraweeView
-            android:paddingLeft="10dp"
+            android:paddingLeft="8dp"
             fresco:actualImageScaleType="fitCenter"
             android:layout_width="160dp"
             android:id="@+id/iv_store_image1"
@@ -92,12 +93,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:text="IT区 国庆攻略"
-                    android:textSize="16sp"
+                    android:id="@+id/card_view_2_1"
+                    android:textSize="12sp"
                     android:layout_height="wrap_content"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:text="游戏本降2000"
-                        android:textSize="12sp"
+                        android:id="@+id/card_view_2_2"
+                        android:textSize="10sp"
                         android:textColor="#ec4e88"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
@@ -118,12 +121,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:text="钟表榜 风云起"
-                    android:textSize="18sp"
+                    android:id="@+id/card_view_3_1"
+                    android:textSize="12sp"
                     android:layout_height="wrap_content"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:text="爆款99元起"
-                        android:textSize="12sp"
+                        android:id="@+id/card_view_3_2"
+                        android:textSize="10sp"
                         android:textColor="#ec4e88"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
