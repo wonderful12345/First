@@ -30,6 +30,7 @@ public class MineFragment extends Fragment {
     private View mView;
     private SimpleDraweeView mSimpleDraweeView;
     private GenericDraweeHierarchyBuilder builder;
+    private TextView tv_exit;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
@@ -51,6 +52,7 @@ public class MineFragment extends Fragment {
             GenericDraweeHierarchy hierarchy = builder.setPlaceholderImage(getActivity().getDrawable(R.drawable.auser))
                     .build();
             mSimpleDraweeView.setHierarchy(hierarchy);
+            tv_exit.setVisibility(View.INVISIBLE);
         }
         tv_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,11 +64,17 @@ public class MineFragment extends Fragment {
                     startActivity(intent);
                     getActivity().finish();
                 }else{
-                    Intent intent = new Intent();
-                    intent.setClass(getActivity(),Leave_login.class);
-                    startActivity(intent);
-                    getActivity().finish();
+                    tv_login.setClickable(false);
                 }
+            }
+        });
+        tv_exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(getActivity(),Login.class);
+                startActivity(intent);
+                getActivity().finish();
             }
         });
         // Inflate the layout for this fragment
@@ -74,6 +82,7 @@ public class MineFragment extends Fragment {
     }
     private void initView() {
         tv_login = (TextView) mView.findViewById(R.id.tv_mine1);
+        tv_exit = (TextView) mView.findViewById(R.id.tv_exit);
         mSimpleDraweeView = (SimpleDraweeView) mView.findViewById(R.id.simpledraweeview_login);
         builder = new GenericDraweeHierarchyBuilder(getResources());
     }

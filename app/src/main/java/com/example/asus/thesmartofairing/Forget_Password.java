@@ -3,11 +3,11 @@ package com.example.asus.thesmartofairing;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class Leave_login extends AppCompatActivity {
+public class Forget_Password extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_leave_login);
+        setContentView(R.layout.activity_forget__password);
     }
 }

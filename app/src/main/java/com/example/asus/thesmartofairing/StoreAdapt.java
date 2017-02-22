@@ -16,10 +16,6 @@ public class StoreAdapt extends RecyclerView.Adapter<MyViewHolder> {
     private LayoutInflater mLayoutInflater ;
     private Context mContext;
     private List<StoreGson> mStoreGsonList;
-    private List<String> tv_list;
-    private List<String> iv_list1;
-    private List<String> iv_list2;
-    private List<String> iv_list3;
     private int Type_R = 1;
     private int Type_L = 0;
 

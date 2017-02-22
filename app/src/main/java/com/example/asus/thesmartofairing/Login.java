@@ -142,6 +142,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_sign:
+                mEditor.putString("casualsee","false");
                 String user = et_user.getText().toString();
                 String password = et_password.getText().toString();
                 SQLiteDatabase db = mDataBaseSQLHelp.getWritableDatabase();
@@ -175,6 +176,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                 intent.setClass(Login.this,MainActivity.class);
                 startActivity(intent);
                 finish();
+                mEditor.putString("casualsee","true");
                 break;
             case R.id.btn_register:
                 Intent intent1 = new Intent();

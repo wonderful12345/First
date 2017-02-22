@@ -78,7 +78,7 @@ public class StoreFragment extends Fragment {
             @Override
             public void run() {
                 HttpClient httpClient = new DefaultHttpClient();
-                HttpGet httpGet = new HttpGet("http://192.168.1.107:8080/app/get_data.json");
+                HttpGet httpGet = new HttpGet("http://192.168.1.107:8080/app/get_data4.json");
                 try {
                     HttpResponse httpResponse = httpClient.execute(httpGet);
                     if (httpResponse.getStatusLine().getStatusCode() == 200) {
@@ -147,7 +147,7 @@ public class StoreFragment extends Fragment {
         private void initSlider(){
         TextSliderView textSliderView = new TextSliderView(this.getActivity());
         textSliderView.description("秒杀")
-                .image("http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg");
+                .image("http://192.168.1.107:8080/app/Slide_1.jpg");
         textSliderView.setOnSliderClickListener(new BaseSliderView.OnSliderClickListener() {
             @Override
             public void onSliderClick(BaseSliderView slider) {
@@ -156,8 +156,8 @@ public class StoreFragment extends Fragment {
         });
 
         TextSliderView textSliderView1 = new TextSliderView(this.getActivity());
-        textSliderView1.description("女主角上场")
-                .image("http://www.91baihui.com/images//20111018/83ff140f8e124bbe.jpg");
+        textSliderView1.description("施华洛世奇 手银环")
+                .image("http://192.168.1.107:8080/app/Slide_2.jpg");
         textSliderView1.setOnSliderClickListener(new BaseSliderView.OnSliderClickListener() {
             @Override
             public void onSliderClick(BaseSliderView slider) {
@@ -167,7 +167,7 @@ public class StoreFragment extends Fragment {
 
         TextSliderView textSliderView2 = new TextSliderView(this.getActivity());
         textSliderView2.description("帆布态度")
-                .image("http://sc.jb51.net/uploads/allimg/140305/10-140305220335391.jpg");
+                .image("http://192.168.1.107:8080/app/Slide_3.jpg");
         textSliderView2.setOnSliderClickListener(new BaseSliderView.OnSliderClickListener() {
             @Override
             public void onSliderClick(BaseSliderView slider) {
@@ -177,7 +177,7 @@ public class StoreFragment extends Fragment {
 
         TextSliderView textSliderView3 = new TextSliderView(this.getActivity());
         textSliderView3.description("轻松淘")
-                .image("http://pic2.ooopic.com/11/72/89/06b1OOOPICe1.jpg");
+                .image("http://192.168.1.107:8080/app/Slide_4.jpg");
         textSliderView3.setOnSliderClickListener(new BaseSliderView.OnSliderClickListener() {
             @Override
             public void onSliderClick(BaseSliderView slider) {
@@ -192,7 +192,7 @@ public class StoreFragment extends Fragment {
 
 
         mSliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
-        mSliderLayout.setPresetTransformer(SliderLayout.Transformer.Default);
+        mSliderLayout.setPresetTransformer(SliderLayout.Transformer.Accordion);
         mSliderLayout.setDuration(3000);
 
 

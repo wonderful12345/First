@@ -24,7 +24,7 @@
         </activity>
         <activity android:name=".RegisterActivity">
         </activity>
-        <activity android:name=".Leave_login">
+        <activity android:name=".Forget_Password">
         </activity>
     </application>
 
