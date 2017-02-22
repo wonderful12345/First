@@ -177,6 +177,7 @@ public class MyEquipment extends Fragment implements View.OnClickListener{
                 }
             }.start();
     }
+
     @Override
     public void onClick(View v) {
         mSharedPreferences = getActivity().getSharedPreferences("Receive",Context.MODE_PRIVATE);

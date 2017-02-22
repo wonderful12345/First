@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 
+import de.greenrobot.event.EventBus;
+
 public class MainActivity extends FragmentActivity {
 
     private FragmentTabHost mFragmentTabHost;
@@ -41,4 +43,9 @@ public class MainActivity extends FragmentActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 }

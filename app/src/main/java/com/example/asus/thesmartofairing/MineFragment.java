@@ -19,8 +19,6 @@ import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder;
 import com.facebook.drawee.generic.RoundingParams;
 import com.facebook.drawee.view.SimpleDraweeView;
 
-import de.greenrobot.event.EventBus;
-
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,20 +30,18 @@ public class MineFragment extends Fragment {
     private View mView;
     private SimpleDraweeView mSimpleDraweeView;
     private GenericDraweeHierarchyBuilder builder;
-
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Fresco.initialize(getContext());
-        EventBus.getDefault().register(this);
         mView = inflater.inflate(R.layout.fragment_mine,container,false);
         initView();
         mSharedPreferences = getActivity().getSharedPreferences("Login", Context.MODE_PRIVATE);
         String c = mSharedPreferences.getString("boolean","");
         if (c.equals("true")){
-
-            tv_login.setText("13794575196");
+            String user = mSharedPreferences.getString("user","");
+            tv_login.setText(user);
             tv_login.setClickable(false);
             GenericDraweeHierarchy hierarchy = builder.setPlaceholderImage(getActivity().getDrawable(R.drawable.image_login))
                     .setRoundingParams(RoundingParams.fromCornersRadius(40)).build();
@@ -76,7 +72,6 @@ public class MineFragment extends Fragment {
         // Inflate the layout for this fragment
         return mView;
     }
-
     private void initView() {
         tv_login = (TextView) mView.findViewById(R.id.tv_mine1);
         mSimpleDraweeView = (SimpleDraweeView) mView.findViewById(R.id.simpledraweeview_login);
