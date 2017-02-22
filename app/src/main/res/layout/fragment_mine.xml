@@ -243,7 +243,7 @@
             android:id="@+id/tv_exit"
             android:layout_gravity="center"
             android:textColor="#fff"
-            android:background="#c12020"
+            android:background="#CC0000"
             android:layout_height="60dp"/>
     </LinearLayout>
 

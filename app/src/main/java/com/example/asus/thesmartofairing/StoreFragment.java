@@ -15,17 +15,8 @@ import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.facebook.drawee.backends.pipeline.Fresco;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -50,14 +41,6 @@ public class StoreFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-       /* if(rootView==null){
-            rootView=inflater.inflate(R.layout.fragment_store,container,false);
-        }
-        //缓存的rootView需要判断是否已经被加过parent， 如果有parent需要从parent删除，要不然会发生这个rootview已经有parent的错误。
-        ViewGroup parent = (ViewGroup) rootView.getParent();
-        if (parent != null) {
-            parent.removeView(rootView);
-        }*/
         Fresco.initialize(this.getActivity());
         View view = inflater.inflate(R.layout.fragment_store, container, false);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_store);
@@ -67,46 +50,10 @@ public class StoreFragment extends Fragment {
         iv_list2 = new ArrayList<>();
         iv_list3 = new ArrayList<>();
         initSlider();
-        // Inflate the layout for this fragment
         initRecyclerView();
 
         return view;
     }
-
-    private void httpclientset() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                HttpClient httpClient = new DefaultHttpClient();
-                HttpGet httpGet = new HttpGet("http://192.168.1.107:8080/app/get_data4.json");
-                try {
-                    HttpResponse httpResponse = httpClient.execute(httpGet);
-                    if (httpResponse.getStatusLine().getStatusCode() == 200) {
-                        HttpEntity httpEntity = httpResponse.getEntity();
-                        String response = EntityUtils.toString(httpEntity,"utf-8");
-                        parseGson(response);
-                    }else{
-                        httpGet.abort();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-    }
-
-    private void parseGson(String response) {
-        Gson gson = new Gson();
-        List<StoreGson> storeList = gson.fromJson(response,new TypeToken<List<StoreGson>>(){}.getType());
-        for (StoreGson store: storeList){
-            tv_list.add(store.getName());
-            iv_list1.add(store.getUrione());
-            iv_list2.add(store.getUritwo());
-            iv_list3.add(store.getUrithree());
-        }
-    }
-
-
     private void initRecyclerView() {
         String url = "http://192.168.1.107:8080/app/get_data.json";
         mOkhttphelper.get(url, new BaseCallBack<List<StoreGson>>() {
