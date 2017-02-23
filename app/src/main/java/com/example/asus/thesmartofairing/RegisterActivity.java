@@ -59,32 +59,36 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     Toast.makeText(this,"注册失败",Toast.LENGTH_SHORT).show();
                 }else {
                     if (password1.equals(ensure_password)){
-                        SQLiteDatabase db = mDataBaseSQLHelp.getWritableDatabase();
-                        ContentValues values = new ContentValues();
-                        Cursor cursor =  db.query("Register",null,null,null,null,null,null);
-                        if (cursor.moveToFirst()){
-                            do {
-                                String s = cursor.getString(cursor.getColumnIndex("register_name"));
-                                String y = cursor.getString(cursor.getColumnIndex("register_password"));
-                                if (s.equals(mobile_num)){
-                                    j=NO;
-                                }
-                                Log.d("MainActivity",s);
-                                Log.d("MainActivity",y);
-                            }while (cursor.moveToNext());
-                        }
-                        if (j==NO){
-                            Toast.makeText(this,"用户已经存在 注册失败",Toast.LENGTH_SHORT).show();
+                        if (password1.length()<6){
+                            Toast.makeText(this,"密码的个数不符合要求",Toast.LENGTH_SHORT).show();
                         }else {
-                            values.put("register_name",mobile_num);
-                            values.put("register_password",ensure_password);
-                            db.insert("Register",null,values);
-                            values.clear();
-                            Toast.makeText(this,"注册成功",Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent();
-                            intent.setClass(this,Login.class);
-                            startActivity(intent);
-                            finish();
+                            SQLiteDatabase db = mDataBaseSQLHelp.getWritableDatabase();
+                            ContentValues values = new ContentValues();
+                            Cursor cursor =  db.query("Register",null,null,null,null,null,null);
+                            if (cursor.moveToFirst()){
+                                do {
+                                    String s = cursor.getString(cursor.getColumnIndex("register_name"));
+                                    String y = cursor.getString(cursor.getColumnIndex("register_password"));
+                                    if (s.equals(mobile_num)){
+                                        j=NO;
+                                    }
+                                    Log.d("MainActivity",s);
+                                    Log.d("MainActivity",y);
+                                }while (cursor.moveToNext());
+                            }
+                            if (j==NO){
+                                Toast.makeText(this,"用户已经存在 注册失败",Toast.LENGTH_SHORT).show();
+                            }else {
+                                values.put("register_name",mobile_num);
+                                values.put("register_password",ensure_password);
+                                db.insert("Register",null,values);
+                                values.clear();
+                                Toast.makeText(this,"注册成功",Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent();
+                                intent.setClass(this,Login.class);
+                                startActivity(intent);
+                                finish();
+                            }
                         }
                     }else {
                         Toast.makeText(this,"输入的密码不一致",Toast.LENGTH_SHORT).show();

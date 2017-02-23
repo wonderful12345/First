@@ -31,6 +31,7 @@ public class MineFragment extends Fragment {
     private SimpleDraweeView mSimpleDraweeView;
     private GenericDraweeHierarchyBuilder builder;
     private TextView tv_exit;
+    private TextView tv_below;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
@@ -44,6 +45,7 @@ public class MineFragment extends Fragment {
             String user = mSharedPreferences.getString("user","");
             tv_login.setText(user);
             tv_login.setClickable(false);
+            tv_below.setText(user+"·欢迎体验智能生活");
             GenericDraweeHierarchy hierarchy = builder.setPlaceholderImage(getActivity().getDrawable(R.drawable.image_login))
                     .setRoundingParams(RoundingParams.fromCornersRadius(40)).build();
             mSimpleDraweeView.setHierarchy(hierarchy);
@@ -83,6 +85,7 @@ public class MineFragment extends Fragment {
     private void initView() {
         tv_login = (TextView) mView.findViewById(R.id.tv_mine1);
         tv_exit = (TextView) mView.findViewById(R.id.tv_exit);
+        tv_below = (TextView) mView.findViewById(R.id.tv_mine2);
         mSimpleDraweeView = (SimpleDraweeView) mView.findViewById(R.id.simpledraweeview_login);
         builder = new GenericDraweeHierarchyBuilder(getResources());
     }

@@ -161,10 +161,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                     Intent intent = new Intent();
                     intent.setClass(Login.this,MainActivity.class);
                     startActivity(intent);
+                    finish();
                     mEditor.putString("boolean","true");
                     mEditor.putString("user",user);
                     mEditor.commit();
-                    finish();
+
                 } else {
                     mEditor.putString("boolean","false");
                     mEditor.commit();

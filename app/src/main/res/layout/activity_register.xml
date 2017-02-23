@@ -65,6 +65,7 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:hint="请填写手机号"
+        android:maxLength="11"
         android:id="@+id/et_Mobile_num"/>
 </LinearLayout>
 
@@ -86,7 +87,8 @@
             android:layout_width="0dp"
             android:layout_weight="8"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
+            android:maxLength="18"
+            android:inputType="numberPassword"
             android:hint="6~18位密码"
             android:id="@+id/et_password1"/>
 
@@ -109,8 +111,9 @@
             android:layout_width="0dp"
             android:layout_weight="8"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
+            android:inputType="numberPassword"
             android:hint="重新输入密码"
+            android:maxLength="18"
             android:id="@+id/et_sure_password"/>
 
     </LinearLayout>

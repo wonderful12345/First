@@ -44,6 +44,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_below="@id/tv_mine1"
+                    android:id="@+id/tv_mine2"
                     android:text="登录智能晾衣杆，体验美好生活"
                     android:layout_height="wrap_content"/>
             </LinearLayout>

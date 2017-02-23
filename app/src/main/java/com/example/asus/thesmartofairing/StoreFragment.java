@@ -19,7 +19,6 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -31,10 +30,6 @@ public class StoreFragment extends Fragment {
     private SliderLayout mSliderLayout;
     private RecyclerView mRecyclerView;
     private StoreAdapt mStoreAdapt;
-    private List<String> tv_list;
-    private List<String> iv_list1;
-    private List<String> iv_list2;
-    private List<String> iv_list3;
     private Okhttphelper mOkhttphelper = Okhttphelper.getInstance();
 
 
@@ -45,10 +40,6 @@ public class StoreFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_store, container, false);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_store);
         mSliderLayout = (SliderLayout) view.findViewById(R.id.slider_layout);
-        tv_list = new ArrayList<>();
-        iv_list1 = new ArrayList<>();
-        iv_list2 = new ArrayList<>();
-        iv_list3 = new ArrayList<>();
         initSlider();
         initRecyclerView();
 
